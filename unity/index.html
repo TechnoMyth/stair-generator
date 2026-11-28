@@ -1,0 +1,2098 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Procedural staircases and railings for game engines">
+      
+      
+      
+        <link rel="canonical" href="https://docs.technomyth.com/stair-generator/unity/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="changelog/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Manual - Stair Generator</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#stair-generator-for-unity" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Stair Generator" class="md-header__button md-logo" aria-label="Stair Generator" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Stair Generator
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Manual
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="deep-orange"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TechnoMyth/stair-generator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Stair Generator" class="md-nav__button md-logo" aria-label="Stair Generator" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Stair Generator
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TechnoMyth/stair-generator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unity
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parts-of-a-staircase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parts of a staircase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shaping-a-staircase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shaping a staircase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shaping a staircase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scene-view-handles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene-view handles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#size-and-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Size and steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layouts-and-turns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layouts and turns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-stairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split stairs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curved-and-spiral-stairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curved and spiral stairs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-bottom-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The bottom step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sides-and-underneath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sides and underneath
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#railings-on-a-staircase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Railings on a staircase
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#railing-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Railing style
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#railings-on-their-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Railings on their own
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Presets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Presets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#your-own-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your own presets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#materials-and-uvs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Materials and UVs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collision-walking-and-vr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collision, walking and VR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#levels-of-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Levels of detail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#baking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Baking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-a-scene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking a scene
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-showcase-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Showcase sample
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scripting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parts-of-a-staircase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parts of a staircase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shaping-a-staircase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shaping a staircase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shaping a staircase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scene-view-handles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene-view handles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#size-and-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Size and steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layouts-and-turns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layouts and turns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-stairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split stairs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curved-and-spiral-stairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curved and spiral stairs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-bottom-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The bottom step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sides-and-underneath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sides and underneath
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#railings-on-a-staircase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Railings on a staircase
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#railing-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Railing style
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#railings-on-their-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Railings on their own
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Presets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Presets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#your-own-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your own presets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#materials-and-uvs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Materials and UVs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collision-walking-and-vr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collision, walking and VR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#levels-of-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Levels of detail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#baking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Baking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-a-scene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking a scene
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-showcase-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Showcase sample
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scripting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="stair-generator-for-unity">Stair Generator for Unity<a class="headerlink" href="#stair-generator-for-unity" title="Permanent link">&para;</a></h1>
+<p>Stair Generator builds staircases and railings at real-world sizes from a handful of settings: straight, landing, L
+and U stairs, winders, curved and spiral stairs, with nosed treads, stringers, turned balusters, newel posts, moulded
+handrails, curtails and volutes. Stairs update as you edit them, come with collision that's comfortable to walk and
+teleport on, and bake to mesh assets for shipping.</p>
+<p>It needs Unity 6.3 or later, and works with URP, HDRP and the Built-in render pipeline. Stairs use your render
+pipeline's default material until you give them your own.</p>
+<p>To read this manual in Unity, choose <strong>Tools &gt; Stair Generator &gt; Manual</strong>, or press <strong>Manual</strong> at the top of a
+Staircase or Railing inspector to open it at that component's section. It opens in its own window: <strong>Contents</strong>
+lists the sections, clicking a line with a link follows it, <strong>Open Online</strong> opens the same manual on
+docs.technomyth.com, and <strong>Open File</strong> opens its Markdown file in your own editor. The Package Manager's
+<strong>Documentation</strong> and <strong>Changelog</strong> links open them on docs.technomyth.com.</p>
+<h2 id="contents">Contents<a class="headerlink" href="#contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#quick-start">Quick start</a></li>
+<li><a href="#parts-of-a-staircase">Parts of a staircase</a></li>
+<li><a href="#shaping-a-staircase">Shaping a staircase</a></li>
+<li><a href="#railing-style">Railing style</a></li>
+<li><a href="#railings-on-their-own">Railings on their own</a></li>
+<li><a href="#presets">Presets</a></li>
+<li><a href="#materials-and-uvs">Materials and UVs</a></li>
+<li><a href="#collision-walking-and-vr">Collision, walking and VR</a></li>
+<li><a href="#levels-of-detail">Levels of detail</a></li>
+<li><a href="#baking">Baking</a></li>
+<li><a href="#checking-a-scene">Checking a scene</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#the-showcase-sample">The Showcase sample</a></li>
+<li><a href="#scripting">Scripting</a></li>
+<li><a href="#limits">Limits</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Choose <strong>GameObject &gt; TechnoMyth &gt; Stair Generator</strong> and pick a staircase. The presets are described under
+   <a href="#presets">Presets</a>; Grand Staircase (Dog-Leg) is a good first try.</li>
+<li>Place it. It appears in the middle of the Scene view, standing on the floor there if the floor has a collider,
+   and climbing away from you. The pivot is the middle of the bottom step's front, on the floor, and the stair climbs
+   along its blue (+Z) axis. A spiral's pivot is the centre of its column instead, so it stays put as the stair
+   widens. To copy a staircase you've changed, select the staircase itself, not its Mesh child, and duplicate it.</li>
+<li>With it selected, drag the <strong>Total Rise</strong> handle in the Scene view up towards the floor above: it adds or
+   removes whole steps, keeping each step as high as it was. To fit a floor height exactly, type it into <strong>Total
+   Rise</strong>, or set <strong>Riser Height</strong> for the step height you want. The line at the top of the inspector shows the
+   pitch and the comfort figure, two risers plus the tread depth.</li>
+<li>Give the <strong>Mesh</strong> child's Mesh Renderer your materials: element 0 for treads and landings, 1 for risers, stringers
+   and the underside, 2 for railings.</li>
+<li>Before shipping, choose <strong>Tools &gt; Stair Generator &gt; Bake All in Open Scenes</strong>.</li>
+</ol>
+<h2 id="parts-of-a-staircase">Parts of a staircase<a class="headerlink" href="#parts-of-a-staircase" title="Permanent link">&para;</a></h2>
+<p>The settings use the usual joinery terms:</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rise, Total Rise</td>
+<td>Height climbed: one step's rise, or floor to floor for the whole stair</td>
+</tr>
+<tr>
+<td>Riser</td>
+<td>The upright face of a step. Riser height = Total Rise / Riser Count</td>
+</tr>
+<tr>
+<td>Tread Depth</td>
+<td>How deep a step is from riser face to riser face, not counting the nosing: the going in British joinery, the run in the US</td>
+</tr>
+<tr>
+<td>Tread, Nosing</td>
+<td>The step you stand on, and its front edge that overhangs the riser below</td>
+</tr>
+<tr>
+<td>Stringer</td>
+<td>The board along each side of a flight. A <em>closed</em> stringer runs above the steps; a <em>cut</em> one is cut to the steps' shape under the tread ends</td>
+</tr>
+<tr>
+<td>Newel post</td>
+<td>The post at each end of a railing and at its corners</td>
+</tr>
+<tr>
+<td>Baluster</td>
+<td>The upright spindles between handrail and stringer or treads</td>
+</tr>
+<tr>
+<td>Landing, Winder</td>
+<td>A flat platform where the stair pauses or turns; winders are steps that fan round a turn instead</td>
+</tr>
+<tr>
+<td>Curtail, Volute</td>
+<td>A bottom step that curls round at its end; a handrail scroll that curls over it</td>
+</tr>
+<tr>
+<td>Soffit</td>
+<td>The sloped ceiling under a flight</td>
+</tr>
+<tr>
+<td>Walk line</td>
+<td>The line up the middle of a flight, where a curved stair's tread depth is measured</td>
+</tr>
+</tbody>
+</table>
+<p>Comfortable stairs have risers of 150 to 220 mm, a tread depth of 220 to 320 mm, and two risers plus the tread depth between
+550 and 700 mm. The inspector warns outside these, and when a handrail is lower than 850 mm.</p>
+<h2 id="shaping-a-staircase">Shaping a staircase<a class="headerlink" href="#shaping-a-staircase" title="Permanent link">&para;</a></h2>
+<p>Select a staircase to see its settings. The inspector shows only the settings that do something for the chosen
+layout and options; for example Well Gap appears only on a U stair, and the curtail settings only when the start step
+is a curtail. Problems with the settings show at the top of the inspector.</p>
+<h3 id="scene-view-handles">Scene-view handles<a class="headerlink" href="#scene-view-handles" title="Permanent link">&para;</a></h3>
+<p>With a staircase selected, yellow handles in the Scene view set its size by eye. Drag along the dotted line:</p>
+<table>
+<thead>
+<tr>
+<th>Handle</th>
+<th>Where it is</th>
+<th>What it sets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total Rise</td>
+<td>Top of the stair</td>
+<td>Riser Count, a whole step at a time, with Total Rise following at the same riser height</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>Side of the first tread (on a spiral, its outer end)</td>
+<td>Width</td>
+</tr>
+<tr>
+<td>Landing</td>
+<td>Front of the landing or winder turn</td>
+<td>Landing After Riser, a riser at a time</td>
+</tr>
+<tr>
+<td>Landing Depth</td>
+<td>Back of a straight, U or split landing</td>
+<td>Landing Depth</td>
+</tr>
+<tr>
+<td>Well Gap</td>
+<td>On the landing, at the side of the first flight a U or returning split stair turns towards</td>
+<td>Well Gap: drag it out to open a gallery between the flights</td>
+</tr>
+<tr>
+<td>Landing Gap</td>
+<td>On the landing, at the side of the first flight an L or sideways split stair turns towards</td>
+<td>Landing Gap; drag it back to the first flight to remove the gap</td>
+</tr>
+<tr>
+<td>Branch Width</td>
+<td>Far edge of a split stair's right upper flight, on its first tread</td>
+<td>Branch Width</td>
+</tr>
+<tr>
+<td>Top Landing</td>
+<td>Top edge</td>
+<td>Top Landing Depth; drag it back to the top step to remove the top landing</td>
+</tr>
+<tr>
+<td>Inner Radius</td>
+<td>Centre of a curved stair, on the floor, or the edge of a spiral's column</td>
+<td>Inner Radius: a curved stair's centre moves, a spiral's column grows</td>
+</tr>
+<tr>
+<td>Curve Angle</td>
+<td>Outer end of a curved or spiral stair</td>
+<td>Curve Angle</td>
+</tr>
+</tbody>
+</table>
+<p>Every handle change can be undone.</p>
+<h3 id="size-and-steps">Size and steps<a class="headerlink" href="#size-and-steps" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total Rise</td>
+<td>Floor to floor height. Typing a new one adds or removes steps to keep the risers about as high, then fits them to it exactly</td>
+</tr>
+<tr>
+<td>Riser Count</td>
+<td>Number of steps up, counting the step onto each landing and onto the top floor. Changing it keeps the risers as high as they are, so the stair gets taller or shorter</td>
+</tr>
+<tr>
+<td>Riser Height</td>
+<td>Height of each step. Changing it keeps Riser Count, so the stair gets taller or shorter. It's Total Rise divided by Riser Count, not stored separately</td>
+</tr>
+<tr>
+<td>Tread Depth</td>
+<td>Depth of each step, riser face to riser face. Curved and spiral stairs work it out from Curve Angle instead</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>Each flight, outside to outside; stringers are inside this width</td>
+</tr>
+<tr>
+<td>Top Landing Depth</td>
+<td>A nosed strip at the top for meeting the upper floor; 0 for none</td>
+</tr>
+<tr>
+<td>Nosing</td>
+<td>Square, Chamfered, Bullnose (half round) or Rounded front edges</td>
+</tr>
+<tr>
+<td>Nosing Overhang, Tread Thickness</td>
+<td>How far a tread overhangs the riser below, and how thick it is</td>
+</tr>
+<tr>
+<td>Risers</td>
+<td>Off for open risers</td>
+</tr>
+<tr>
+<td>Riser Thickness</td>
+<td>Thickness of the risers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="layouts-and-turns">Layouts and turns<a class="headerlink" href="#layouts-and-turns" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Layout</th>
+<th>Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Straight</td>
+<td>One flight</td>
+</tr>
+<tr>
+<td>Straight With Landing</td>
+<td>Two flights in a line with a landing between</td>
+</tr>
+<tr>
+<td>L-Shaped</td>
+<td>Two flights at right angles with a square quarter landing</td>
+</tr>
+<tr>
+<td>U-Shaped</td>
+<td>Two flights side by side going opposite ways with a half landing (a dog-leg)</td>
+</tr>
+<tr>
+<td>Curved</td>
+<td>One flight curving round an arc</td>
+</tr>
+<tr>
+<td>Spiral</td>
+<td>Treads fanning round a central column</td>
+</tr>
+<tr>
+<td>Split</td>
+<td>A wide first flight up to a landing, then two narrower flights, one on each side (a bifurcated or imperial stair)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Turn</td>
+<td>Which way an L, U, curved or spiral stair turns, seen going up</td>
+</tr>
+<tr>
+<td>Landing After Riser</td>
+<td>Risers below the landing; 0 puts it halfway</td>
+</tr>
+<tr>
+<td>Landing Depth</td>
+<td>Depth of a straight, U or split landing; 0 makes it as deep as the flight after it is wide. An L landing is as deep as the stair is wide</td>
+</tr>
+<tr>
+<td>Well Gap</td>
+<td>Gap between the flights of a U stair, or between a split stair's first flight and the upper flights returning beside it. The landing spans it, with the railing along its edge, so a wide gap makes a gallery between the flights</td>
+</tr>
+<tr>
+<td>Landing Gap</td>
+<td>A stretch of landing before the second flight of an L stair, or before each upper flight of a split stair that goes sideways, with the railing along it. 0 for none</td>
+</tr>
+<tr>
+<td>Turn Style</td>
+<td>Landing, or Winders: steps that fan round the turn from the newel post on the inside, each a riser higher</td>
+</tr>
+<tr>
+<td>Winders Per Quarter Turn</td>
+<td>2 to 6. A U stair turns two quarters, so 3 per quarter gives 6 winders. Each winder after the first is a riser taken from the flights</td>
+</tr>
+</tbody>
+</table>
+<p>Round the outside of a winder turn, the stringer and railing follow the winder nosings, with a post at each corner.
+On the inside, the newel post takes the handrail in low from the first flight and out high to the second.</p>
+<h3 id="split-stairs">Split stairs<a class="headerlink" href="#split-stairs" title="Permanent link">&para;</a></h3>
+<p>A split stair climbs one wide flight to a landing, then divides into two mirrored upper flights.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Split Style</td>
+<td>Return: the upper flights turn back alongside the first, one on each side, like two U stairs. Sideways: they go off left and right, like two L stairs</td>
+</tr>
+<tr>
+<td>Branch Width</td>
+<td>Width of each upper flight; 0 makes them as wide as the first</td>
+</tr>
+<tr>
+<td>Outer Railing</td>
+<td>A railing down the outer side of one upper flight, round the back of the landing and up the other</td>
+</tr>
+<tr>
+<td>Outer Railing Type</td>
+<td>Balustrade, or Wall Handrail for a landing between walls</td>
+</tr>
+</tbody>
+</table>
+<p>Left and Right Railing run up the first flight, along the landing and up the side of that side's upper flight
+nearer the middle. Each upper flight takes the stringer settings of its own sides, seen going up it. Add Stairwell
+Railing isn't offered, as there are two tops: a railing that starts or ends at a split stair's Left or Right joins
+the top of that side's upper flight, at its side nearer the middle.</p>
+<h3 id="curved-and-spiral-stairs">Curved and spiral stairs<a class="headerlink" href="#curved-and-spiral-stairs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inner Radius</td>
+<td>Radius of the inside edge of a curved stair, or of a spiral's column</td>
+</tr>
+<tr>
+<td>Curve Angle</td>
+<td>How far the stair turns, in degrees, from the first riser to the top (up to three full turns)</td>
+</tr>
+</tbody>
+</table>
+<p>The tread depth is measured along the walk line down the middle of the flight, so it comes from the radius and angle; the
+inspector shows it. A spiral's treads run into its column, and it has no inner stringer or railing. A spiral turns
+about its pivot, the centre of the column, and its first step starts beside the pivot, climbing along +Z; changing
+its width moves only the outside edge.</p>
+<h3 id="the-bottom-step">The bottom step<a class="headerlink" href="#the-bottom-step" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start Step</td>
+<td>None; Bullnose, where the step's front bows out; or Curtail Left, Right or Both, where the step curls round in a half circle at that end, with the newel post and stringer standing on the curl</td>
+</tr>
+<tr>
+<td>Start Step Extension</td>
+<td>How far the bottom step reaches out beyond a normal step</td>
+</tr>
+<tr>
+<td>Curtail Segments</td>
+<td>Smoothness of each curl</td>
+</tr>
+<tr>
+<td>Curtail Volute</td>
+<td>Over a curtail, end the handrail in a volute instead of a newel post: it eases down to level and scrolls outward round the curl to an eye, with balusters standing on the curl</td>
+</tr>
+<tr>
+<td>Flare</td>
+<td>The first flight's bottom steps fan out on Both sides, the Left or the Right. The nosing returns round the flared ends, and on a flared side the newel post and stringer stand on the last flared step. On an L or U stair, flare the outer side</td>
+</tr>
+<tr>
+<td>Flare Steps, Flare Width, Flare Curve</td>
+<td>How many steps fan out, how far the bottom one reaches past the flight on each side, and whether the step ends sweep round (Smooth) or follow a straight line (Linear)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sides-and-underneath">Sides and underneath<a class="headerlink" href="#sides-and-underneath" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left/Right Stringer</td>
+<td>A stringer on that side, seen going up. Without one, the tread ends show and balusters stand on the treads</td>
+</tr>
+<tr>
+<td>Left/Right Stringer Style</td>
+<td>Closed, a straight board above the steps that balusters stand on; or Cut, cut to the steps under the treads, whose nosings return round their ends over it, with balusters standing on the tread ends</td>
+</tr>
+<tr>
+<td>Stringer Thickness, Stringer Above, Stringer Depth</td>
+<td>Board thickness, how far its top is above the nosings, and its depth (raised if too shallow to cover the steps)</td>
+</tr>
+<tr>
+<td>Underside</td>
+<td>Open, showing the treads and risers from below; Soffit, a sloped ceiling under each flight; or Solid, closed down to the floor like a stair with a cupboard under it</td>
+</tr>
+<tr>
+<td>Landing Thickness</td>
+<td>Thickness of landings and the top landing</td>
+</tr>
+</tbody>
+</table>
+<h3 id="railings-on-a-staircase">Railings on a staircase<a class="headerlink" href="#railings-on-a-staircase" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left/Right Railing</td>
+<td>A railing on that side, seen going up. On an L or U stair it continues round the landing; on a split stair, see <a href="#split-stairs">Split stairs</a></td>
+</tr>
+<tr>
+<td>Left/Right Railing Type</td>
+<td>Balustrade, with balusters and newel posts; or Wall Handrail, a handrail on the wall beside the stair. The wall is taken to be at the stair's edge</td>
+</tr>
+</tbody>
+</table>
+<p>How the railings look is set by the staircase's <a href="#railing-style">railing style</a>.</p>
+<h2 id="railing-style">Railing style<a class="headerlink" href="#railing-style" title="Permanent link">&para;</a></h2>
+<p>Staircases and standalone railings share these settings:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Height</td>
+<td>Top of the handrail above the step nosings, or above the floor on level runs</td>
+</tr>
+<tr>
+<td>Handrail, Handrail Width, Handrail Height</td>
+<td>Round, Mushroom (rounded top on a narrower base), Moulded (a Victorian crowned rail), Rectangular or None, and its size</td>
+</tr>
+<tr>
+<td>Balusters, Baluster Width</td>
+<td>None, Square, Round, Turned Vase or Turned Bobbin; turned ones have square blocks at each end</td>
+</tr>
+<tr>
+<td>Balusters Per Tread</td>
+<td>1 to 4 on each step of a flight</td>
+</tr>
+<tr>
+<td>Baluster Spacing</td>
+<td>Largest centre-to-centre spacing on level runs</td>
+</tr>
+<tr>
+<td>Newels, Newel Width, Newel Projection</td>
+<td>None, Square (with a moulded cap) or Turned (square up past the handrail, then turned with a ball finial), its width, and how far it rises above the handrail</td>
+</tr>
+<tr>
+<td>Round Sides</td>
+<td>Sides on turned and round parts: more is smoother and costs more triangles</td>
+</tr>
+<tr>
+<td>Wall Clearance</td>
+<td>Gap between the wall and a wall handrail</td>
+</tr>
+<tr>
+<td>Bracket Spacing</td>
+<td>Largest distance between a wall handrail's brackets</td>
+</tr>
+</tbody>
+</table>
+<p>A wall handrail has no balusters or newel posts. It runs as one rail round landings, winders and curves on brackets
+spread evenly along it.</p>
+<h2 id="railings-on-their-own">Railings on their own<a class="headerlink" href="#railings-on-their-own" title="Permanent link">&para;</a></h2>
+<p>For galleries, balconies and landing edges, choose <strong>GameObject &gt; TechnoMyth &gt; Stair Generator &gt; Railing</strong>.</p>
+<ul>
+<li>Drag its points in the Scene view. Hold Shift and click a point to add one after it. Each point is a spot on the
+  floor; points can differ in height, and the railing then runs down the slope with its balusters upright.</li>
+<li><strong>Closed</strong> joins the last point back to the first.</li>
+<li><strong>Newel Placement</strong> puts newel posts at every point, at the ends and corners, or at the ends only.</li>
+<li><strong>Start At</strong> and <strong>End At</strong> join an end to a staircase's top newel post: pick the staircase and the side. That end
+  moves to the post and shares it instead of drawing a second one, and follows the staircase when you change or move
+  it. A joined end shows "(joined)" in the Scene view and has no handle. Closed railings don't join staircases.</li>
+</ul>
+<p><strong>Add Stairwell Railing</strong>, on a staircase's inspector, adds the balustrade round the opening in the floor above the
+stair as a child of the staircase. It runs back from the left top newel along the stairwell, across, and up to the
+right top newel, joined at both ends, and reaches back as far as the stair needs headroom (2 m under a 250 mm floor).
+Edit its points to fit the room, or delete the points on a side that's against a wall. On an L or U stair it's sized
+for the top flight. It isn't offered on curved and spiral stairs.</p>
+<h2 id="presets">Presets<a class="headerlink" href="#presets" title="Permanent link">&para;</a></h2>
+<p>Each preset is a starting point: pick one from <strong>GameObject &gt; TechnoMyth &gt; Stair Generator</strong> to place a new staircase,
+then change it to suit.</p>
+<p>To apply one to a staircase you already have, import them as Unity presets first: in <strong>Window &gt; Package Manager</strong>,
+select Stair Generator, open <strong>Samples</strong> and press <strong>Import</strong> beside <strong>Presets</strong>. They're copied into
+<code>Assets/Samples/Stair Generator</code>. Then click the preset icon (the sliders at the top right of the Staircase component)
+and pick one. These presets set the shape and railing style only, leaving the levels of detail and any bake alone.</p>
+<table>
+<thead>
+<tr>
+<th>Preset</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grand Staircase (Dog-Leg)</td>
+<td>A Victorian U stair with a half landing, a curtail bottom step, turned balusters and newels and a moulded rail</td>
+</tr>
+<tr>
+<td>Grand Staircase (Straight)</td>
+<td>A wide straight flight up to a gallery, curtails on both sides, balustrades on both sides</td>
+</tr>
+<tr>
+<td>Grand Staircase (Flared)</td>
+<td>A straight flight whose bottom four steps fan out, with a bullnose first step and cut stringers</td>
+</tr>
+<tr>
+<td>Grand Staircase (Curved)</td>
+<td>A wide flight curving through 140°, with balustrades on both sides</td>
+</tr>
+<tr>
+<td>Grand Staircase (Split)</td>
+<td>An imperial stair: a 1.8 m flight up to a half landing, then two 1.1 m flights returning beside it, with curtails on both sides and wall handrails round the landing</td>
+</tr>
+<tr>
+<td>Attic Stair</td>
+<td>A narrow, steep stair between walls with a wall handrail</td>
+</tr>
+<tr>
+<td>Back Stair</td>
+<td>A plain servants' stair with square balusters and newels</td>
+</tr>
+<tr>
+<td>Winding Stair</td>
+<td>A narrow back stair turning a corner on three winders, with a balustrade inside and a wall handrail outside</td>
+</tr>
+<tr>
+<td>Spiral Stair</td>
+<td>A compact spiral round a column, with open treads and a slim outer railing</td>
+</tr>
+<tr>
+<td>Cellar Stair</td>
+<td>An open-riser stair with a wall handrail</td>
+</tr>
+<tr>
+<td>Georgian Stair (Dog-Leg)</td>
+<td>A U stair with a cut string, slender round balusters three to a tread, and a plain rail ending in a volute over a curtail</td>
+</tr>
+<tr>
+<td>Modern Open-Riser Stair</td>
+<td>A straight open-riser flight with square-edged treads, slim square balusters and a flat-topped rail</td>
+</tr>
+</tbody>
+</table>
+<h3 id="your-own-presets">Your own presets<a class="headerlink" href="#your-own-presets" title="Permanent link">&para;</a></h3>
+<p>To keep a staircase you've set up, click the preset icon on its Staircase component and choose <strong>Save current
+to...</strong>. Unity saves a <code>.preset</code> file in your project; pick it from the same icon to apply it to another staircase,
+and Undo puts the old settings back. To make one the starting settings for every Staircase you add with <strong>Add
+Component</strong>, open it and press <strong>Add to Staircase default</strong>, or set it in <strong>Project Settings &gt; Preset Manager</strong>; the
+GameObject menu always places the preset you pick.</p>
+<p>A saved preset holds every Staircase setting, including the levels of detail. To leave some alone when it's applied,
+untick them in the preset's inspector. To share presets across projects, copy the <code>.preset</code> files.</p>
+<h2 id="materials-and-uvs">Materials and UVs<a class="headerlink" href="#materials-and-uvs" title="Permanent link">&para;</a></h2>
+<p>A staircase or railing draws with three materials on its <strong>Mesh</strong> child:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Parts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Treads, landings and the top landing</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Risers, stringers, the soffit or solid underside, and a spiral's column</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Handrails, balusters, newel posts, wall brackets and volutes</td>
+</tr>
+</tbody>
+</table>
+<p>Textures are mapped at world scale: one unit of texture space is one metre, projected along each face, so a texture
+tiles evenly whatever the stair's size and never stretches. Tiling or trim textures suit this best. Each element can
+use any material and shader your render pipeline supports.</p>
+<p>Set materials on the Mesh child only. Its level-of-detail siblings, "Mesh LOD1" and "Mesh LOD2", take the same
+materials automatically in the editor.</p>
+<h2 id="collision-walking-and-vr">Collision, walking and VR<a class="headerlink" href="#collision-walking-and-vr" title="Permanent link">&para;</a></h2>
+<p>Each staircase has two collider children:</p>
+<ul>
+<li><strong>Walk Surface</strong>: one Mesh Collider made of a smooth ramp through the step nosings plus the landings, winders and
+  shaped bottom steps. Character controllers walk up it without stepping, and VR players don't bob. It starts at the
+  front edge of the bottom tread, so a character steps up onto the first step. To teleport onto stairs, make this
+  child a teleport target, for example by adding an XR Interaction Toolkit Teleportation Area to it. Put it on the
+  layer your game uses for floors; regenerating keeps its layer.</li>
+<li><strong>Railing Colliders</strong>: a box per railing span and newel post, so players can't walk through railings.</li>
+</ul>
+<p>Standalone railings have railing colliders only.</p>
+<h2 id="levels-of-detail">Levels of detail<a class="headerlink" href="#levels-of-detail" title="Permanent link">&para;</a></h2>
+<p><strong>LOD Levels</strong> (1 to 3, default 3) adds simpler versions of a staircase or railing under a LOD Group on it. Every
+level keeps the same shapes, so switching doesn't pop:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>What's simpler</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOD0</td>
+<td>Full detail</td>
+</tr>
+<tr>
+<td>LOD1</td>
+<td>Half the sides on turned and round parts, and half the curtail segments</td>
+</tr>
+<tr>
+<td>LOD2</td>
+<td>A quarter of the sides, and turned parts and handrails with about half their profile points</td>
+</tr>
+</tbody>
+</table>
+<p>The LOD Group's transition heights are yours to change; they're kept when the stair is rebuilt. Colliders and the
+walk surface always use full detail. Set LOD Levels to 1 for no LOD Group.</p>
+<h2 id="baking">Baking<a class="headerlink" href="#baking" title="Permanent link">&para;</a></h2>
+<p>Generated meshes aren't saved in scenes. A staircase or railing that isn't baked is generated when its scene loads,
+which costs time and, in a player, logs a warning. Baking saves its meshes as <code>Stair_&lt;id&gt;.asset</code> or
+<code>Railing_&lt;id&gt;.asset</code> in the bake folder, with the walk surface and lower levels of detail inside it. Identical
+staircases share one asset.</p>
+<ul>
+<li><strong>Bake</strong> and <strong>Unbake</strong> are in the inspector, and <strong>Bake Selected</strong>, <strong>Unbake Selected</strong>, <strong>Bake All in Open
+  Scenes</strong> and <strong>Rebuild Baked Meshes in Open Scenes</strong> are under <strong>Tools &gt; Stair Generator</strong>.</li>
+<li>Changing a baked staircase makes its bake out of date; it's generated again until you bake it. The inspector shows
+  the bake's state and triangle counts.</li>
+<li><strong>Unbake</strong> goes back to generating and leaves the asset in place.</li>
+<li><strong>Rebuild Baked Meshes in Open Scenes</strong> regenerates existing bakes, for example after updating the package or
+  turning on lightmap UVs.</li>
+<li>Baked meshes have Read/Write turned off, so a build doesn't keep a second copy of them in memory. The walk surface
+  keeps it, so its collider can be built when a stair is spawned at runtime. Older bakes keep Read/Write until you
+  rebuild them.</li>
+</ul>
+<p>Project-wide settings are in <strong>Project Settings &gt; Stair Generator</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bake Folder</td>
+<td><code>Assets/StairGenerator/Meshes</code></td>
+</tr>
+<tr>
+<td>On Save Behaviour</td>
+<td>Warn in the Console about unbaked stairs when a scene is saved; or Auto Bake them; or Off</td>
+</tr>
+<tr>
+<td>Generate Lightmap UVs</td>
+<td>On: baked meshes get a second UV set for baked lighting</td>
+</tr>
+<tr>
+<td>Mark Baked Static</td>
+<td>On: baked stairs are marked static for lightmapping, batching and occlusion culling</td>
+</tr>
+<tr>
+<td>Triangle Budget</td>
+<td>25,000: Check Scene flags stairs and railings with more triangles than this at full detail; 0 turns the check off</td>
+</tr>
+</tbody>
+</table>
+<h2 id="checking-a-scene">Checking a scene<a class="headerlink" href="#checking-a-scene" title="Permanent link">&para;</a></h2>
+<p><strong>Tools &gt; Stair Generator &gt; Check Scene</strong> opens a window listing every staircase and railing in the open scenes that
+has a problem: settings errors and warnings, not baked or out of date, over the triangle budget, a missing material,
+or a copy of its Mesh child (see <a href="#troubleshooting">Troubleshooting</a>). Click a name to select it. <strong>Bake</strong> fixes a
+bake problem; the toolbar button bakes them all.</p>
+<p><strong>Tools &gt; Stair Generator &gt; Delete Unused Bakes</strong> finds baked meshes in the bake folder that no scene or prefab in
+Assets uses and nothing in the open scenes uses. It lists them and, if you agree, moves them to the system trash,
+where you can restore them. Scenes inside packages aren't checked.</p>
+<h2 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h2>
+<p>Triangles at full detail and the two lower levels:</p>
+<table>
+<thead>
+<tr>
+<th>Preset</th>
+<th style="text-align: right;">LOD0</th>
+<th style="text-align: right;">LOD1</th>
+<th style="text-align: right;">LOD2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grand Staircase (Dog-Leg)</td>
+<td style="text-align: right;">9,230</td>
+<td style="text-align: right;">5,390</td>
+<td style="text-align: right;">4,238</td>
+</tr>
+<tr>
+<td>Grand Staircase (Straight)</td>
+<td style="text-align: right;">19,740</td>
+<td style="text-align: right;">11,020</td>
+<td style="text-align: right;">8,412</td>
+</tr>
+<tr>
+<td>Grand Staircase (Flared)</td>
+<td style="text-align: right;">17,154</td>
+<td style="text-align: right;">10,082</td>
+<td style="text-align: right;">7,922</td>
+</tr>
+<tr>
+<td>Grand Staircase (Curved)</td>
+<td style="text-align: right;">21,052</td>
+<td style="text-align: right;">12,836</td>
+<td style="text-align: right;">9,892</td>
+</tr>
+<tr>
+<td>Grand Staircase (Split)</td>
+<td style="text-align: right;">21,524</td>
+<td style="text-align: right;">12,596</td>
+<td style="text-align: right;">9,796</td>
+</tr>
+<tr>
+<td>Georgian Stair (Dog-Leg)</td>
+<td style="text-align: right;">3,754</td>
+<td style="text-align: right;">2,770</td>
+<td style="text-align: right;">2,362</td>
+</tr>
+<tr>
+<td>Spiral Stair</td>
+<td style="text-align: right;">3,128</td>
+<td style="text-align: right;">2,504</td>
+<td style="text-align: right;">1,868</td>
+</tr>
+<tr>
+<td>Winding Stair</td>
+<td style="text-align: right;">1,374</td>
+<td style="text-align: right;">1,374</td>
+<td style="text-align: right;">1,286</td>
+</tr>
+<tr>
+<td>Back Stair</td>
+<td style="text-align: right;">968</td>
+<td style="text-align: right;">968</td>
+<td style="text-align: right;">952</td>
+</tr>
+<tr>
+<td>Modern Open-Riser Stair</td>
+<td style="text-align: right;">698</td>
+<td style="text-align: right;">698</td>
+<td style="text-align: right;">698</td>
+</tr>
+<tr>
+<td>Attic Stair</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">536</td>
+</tr>
+<tr>
+<td>Cellar Stair</td>
+<td style="text-align: right;">376</td>
+<td style="text-align: right;">376</td>
+<td style="text-align: right;">352</td>
+</tr>
+</tbody>
+</table>
+<p>Turned balusters cost the most. Fewer <strong>Round Sides</strong>, fewer <strong>Balusters Per Tread</strong>, or square balusters bring a
+staircase down quickly. Bake everything before shipping, and keep the default three levels of detail for mobile and
+standalone VR.</p>
+<p>Stairs with square balusters and newels and plain rails have no curved parts to simplify, so their lower levels of
+detail save little. Set <strong>LOD Levels</strong> to 1 on those to save the LOD Group.</p>
+<h2 id="the-showcase-sample">The Showcase sample<a class="headerlink" href="#the-showcase-sample" title="Permanent link">&para;</a></h2>
+<p>Import it from the Package Manager: select <strong>Stair Generator</strong>, open the <strong>Samples</strong> tab and click <strong>Import</strong> next to
+<strong>Showcase</strong>. It's copied to <code>Assets/Samples/Stair Generator</code>. Open the scene for your render pipeline:</p>
+<table>
+<thead>
+<tr>
+<th>Pipeline</th>
+<th>Scene</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URP</td>
+<td><code>URP/Showcase URP</code></td>
+</tr>
+<tr>
+<td>HDRP</td>
+<td><code>HDRP/Showcase HDRP</code></td>
+</tr>
+<tr>
+<td>Built-in</td>
+<td><code>BuiltIn/Showcase Built-in</code></td>
+</tr>
+</tbody>
+</table>
+<p>The other pipelines' folders aren't used and can be deleted. The scenes have:</p>
+<ul>
+<li><strong>Stair hall</strong>: a Grand Staircase (Dog-Leg) in a stairwell off a tiled hall, climbing to a gallery. The gallery's
+  balustrade is a Railing of its own, and the stairwell railing ends on the staircase's top newel post.</li>
+<li><strong>Attic stair</strong>: between walls, with a wall handrail.</li>
+<li><strong>Spiral stair</strong>: up to a platform whose railing ends on the spiral's top post.</li>
+<li><strong>Split stair</strong>: the Grand Staircase (Split), an imperial stair with wall handrails round its landing.</li>
+<li><strong>Grand presets</strong> and <strong>Everyday presets</strong>: every preset, as the GameObject menu places it.</li>
+</ul>
+<p>The materials are <strong>Oak</strong> for treads, <strong>Paint</strong> for risers and stringers, <strong>Mahogany</strong> for railings, and
+<strong>Black Steel</strong> for the spiral's and the modern stair's railings, with <strong>Plaster</strong>, <strong>Tiles</strong> and <strong>Stone</strong> for the
+rooms. Their grain and wear are baked into textures, so they use each pipeline's standard Lit (or Standard) shader and
+can be copied into your project. They tile once a metre, to suit the stairs' world-scale UVs.</p>
+<p>In Play mode, press <strong>1</strong> to <strong>9</strong> to move between the stations, or <strong>Tab</strong> for the next one. Everything is baked.</p>
+<h2 id="scripting">Scripting<a class="headerlink" href="#scripting" title="Permanent link">&para;</a></h2>
+<p>Everything in the inspector can be set from code; the components regenerate when you set a property.</p>
+<pre><code class="language-csharp">using TechnoMyth.StairGenerator;
+using UnityEngine;
+
+public class BuildStairs : MonoBehaviour
+{
+    void Start()
+    {
+        var staircase = new GameObject(&quot;Stair&quot;).AddComponent&lt;Staircase&gt;();
+        staircase.ApplyPreset(StairPreset.GrandDogLeg);
+
+        var shape = staircase.shape;
+        shape.totalRise = 3.2f;
+        shape.riserCount = 18;
+        staircase.shape = shape;
+
+        if (staircase.TryGetTopNewel(StairSide.Left, out var top))
+        {
+            var gallery = new GameObject(&quot;Gallery&quot;).AddComponent&lt;Railing&gt;();
+            gallery.transform.SetParent(staircase.transform, false);
+            gallery.SetPoints(new[] { top, top + new Vector3(0f, 0f, -3f) });
+            gallery.startAt = new StairConnection(staircase, StairSide.Left);
+        }
+    }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Staircase.shape</code>, <code>Staircase.railing</code></td>
+<td>Get, change and set back the settings as <code>StairShape</code> and <code>RailingStyle</code> structs; <code>StairShape.Default</code> and <code>RailingStyle.Default</code> are the defaults</td>
+</tr>
+<tr>
+<td><code>Staircase.ApplyPreset(StairPreset)</code>, <code>StairPresets.Get</code></td>
+<td>Apply a preset, or read its settings</td>
+</tr>
+<tr>
+<td><code>Staircase.TryGetTopNewel(StairSide, out Vector3)</code></td>
+<td>Where a side's top newel post stands, in the staircase's local space</td>
+</tr>
+<tr>
+<td><code>Railing.SetPoints</code>, <code>points</code>, <code>closed</code>, <code>newelPlacement</code>, <code>style</code>, <code>startAt</code>, <code>endAt</code></td>
+<td>A standalone railing's path and settings</td>
+</tr>
+<tr>
+<td><code>lodLevels</code>, <code>SyncLodMaterials()</code></td>
+<td>Levels of detail; call <code>SyncLodMaterials()</code> after changing materials in a player</td>
+</tr>
+<tr>
+<td><code>messages</code>, <code>triangleCount</code>, <code>lodTriangleCounts</code></td>
+<td>Problems with the settings, and triangle counts</td>
+</tr>
+<tr>
+<td><code>isBakeCurrent</code>, <code>bakedMesh</code>, <code>geometryHash</code></td>
+<td>Baking state</td>
+</tr>
+<tr>
+<td><code>geometryUpdated</code></td>
+<td>Event raised after the meshes are generated or a bake is applied</td>
+</tr>
+<tr>
+<td><code>UpdateGeometry()</code></td>
+<td>Regenerate now</td>
+</tr>
+</tbody>
+</table>
+<p>Generating in a player works but is slower than loading a bake, and logs a warning once per object. In the editor,
+<code>StairBaker</code>, <code>StairSceneCheck</code> and <code>StairBakeCleanup</code> (namespace <code>TechnoMyth.StairGenerator.EditorTools</code>) give
+scripts the baking and checking tools.</p>
+<h2 id="limits">Limits<a class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Curved and spiral stairs don't have start steps, flares, winders or cut stringers; a Cut stringer style is built
+  closed on them.</li>
+<li>Add Stairwell Railing sizes the opening for the top flight only, and isn't offered on curved and spiral stairs.</li>
+<li>Balusters and newel posts are made by the generator; using your own meshes for them isn't supported yet.</li>
+<li>Wall handrails assume the wall is at the stair's edge.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The stair is pink or plain grey</td>
+<td>Assign materials to the Mesh child's three elements (see <a href="#materials-and-uvs">Materials and UVs</a>)</td>
+</tr>
+<tr>
+<td>"Generated at runtime" warning in a player</td>
+<td>The stair isn't baked or changed since baking. Use Check Scene, then bake</td>
+</tr>
+<tr>
+<td>No handles in the Scene view</td>
+<td>Select the staircase, and fix any errors shown at the top of its inspector</td>
+</tr>
+<tr>
+<td>A joined railing doesn't follow the staircase</td>
+<td>Check Start At or End At names the staircase, and that the railing isn't Closed</td>
+</tr>
+<tr>
+<td>A setting seems to be missing</td>
+<td>The inspector hides settings that don't apply to the chosen layout and options</td>
+</tr>
+<tr>
+<td>The lower levels of detail have the wrong materials</td>
+<td>Set materials on the Mesh child; in a player call <code>SyncLodMaterials()</code></td>
+</tr>
+<tr>
+<td>A copied staircase changes when the original does, and its inspector has no settings</td>
+<td>You duplicated the Mesh child, not the staircase. Select the copy and click <strong>Make a Separate Staircase</strong>, or delete it and duplicate the staircase itself</td>
+</tr>
+<tr>
+<td>A baked staircase looks out of date after updating the package</td>
+<td>Use Rebuild Baked Meshes in Open Scenes</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright TechnoMyth
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "toc.follow", "search.highlight"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
